@@ -6,12 +6,12 @@ using System.Threading.Tasks;
 
 namespace Task_1
 {
-    internal class Person : Town
+    internal class Person 
     {
         private string name;
         private int age;
         private string relation;
-        public Town town;
+        public string profession;
         public Person (string name, int age)
         {
             this.name = name;
@@ -24,12 +24,12 @@ namespace Task_1
             this.age= age;
             
         }
-        public Person (Town town, string name, int age, string relation)
+        public Person (string profession, string name, int age, string relation)
         {
             this.relation = relation;
             this.name = name;
             this.age = age;
-            this.town = town;
+            this.profession = profession;
            
         }
 
@@ -50,7 +50,7 @@ namespace Task_1
         }
         public override string ToString()
         {
-            return $"Name: {name}, Age: {age}, Town: {town.ToString()}";
+            return $"Name: {name}, Age: {age}, Profession : {profession}";
         }
     }
 }
