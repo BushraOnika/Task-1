@@ -1,56 +1,66 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace Task_1
+﻿namespace Task_1
 {
-    internal class Person 
+    public class Person
     {
-        private string name;
-        private int age;
-        private string relation;
-        public string profession;
-        public Person (string name, int age)
+        private string _name;
+        private int _age;
+        private string _profession;
+        private Town _currentTown;
+
+        public Person(string name, int age)
         {
-            this.name = name;
-            this.age = age;
+            Name = name;
+            Age = age;
         }
-        public Person(string name, int age, string relation)
+
+        public Person(string profession, string name, int age)
         {
-            this.relation = relation;
-            this.name = name;
-            this.age= age;
-            
+            Name = name;
+            Age = age;
+            Profession = profession;
         }
-        public Person (string profession, string name, int age, string relation)
+
+        public Person(string profession, string name, int age, Town currentTown)
         {
-            this.relation = relation;
-            this.name = name;
-            this.age = age;
-            this.profession = profession;
-           
+            Name = name;
+            Age = age;
+            Profession = profession;
+            CurrentTown = currentTown;
         }
 
         public string Name
         {
-            get { return name; }
-            set { name = value; }
+            get => _name;
+            set => _name = value;
         }
+
         public int Age
-            { 
-            get { return age; } 
-            set { age = value; }
-        }
-       public string Relation
         {
-            get { return relation; }
-            set { relation = value; }
+            get => _age;
+            set => _age = value;
         }
+
+
+        public Town CurrentTown
+        {
+            get => _currentTown;
+            set
+            {
+                if(_currentTown != null) _currentTown.RemovePerson(this);
+                _currentTown = value;
+                _currentTown.AddPerson(this);
+            }
+        }
+
+        public string Profession
+        {
+            get => _profession;
+            set => _profession = value;
+        }
+
         public override string ToString()
         {
-            return $"Name: {name}, Age: {age}, Profession : {profession}";
+            return $"Name: {_name}, Age: {_age}, Profession: {_profession}, {_currentTown}";
         }
     }
 }

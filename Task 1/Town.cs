@@ -1,37 +1,48 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Collections.Generic;
 
 namespace Task_1
 {
-    internal class Town
+    public class Town
     {
-        public string city, name, postalcode;
-        List<Person> p;
-        public Town() { }
-        public Town(string name) { 
-            this.name = name;
-            p = new List<Person>();
+        private string _name;
+        private string _city;
+        private string _postalcode;
+        private List<Person> persons = new List<Person>();
 
-        }
-        public Town(string city, string name, string postalcode) { 
-            this.city = city;
-            this.name = name;
-            this.postalcode = postalcode;
-            p = new List<Person>();
-
-
-        }
-        public void addPerson (Person p1)
+        public Town()
         {
-            p.Add(p1);
         }
+
+        public Town(string name)
+        {
+            _name = name;
+        }
+
+        public Town(string city, string name, string postalcode)
+        {
+            _city = city;
+            _name = name;
+            _postalcode = postalcode;
+        }
+
+        public void AddPerson(Person person)
+        {
+            persons.Add(person);
+        }
+
+        public void RemovePerson(Person person)
+        {
+            persons.Remove(person);
+        }
+
+        public List<Person> GetPersons()
+        {
+            return persons;
+        }
+
         public override string ToString()
         {
-            return $"Town: {name}, City: {city}, Postal Code: {postalcode} , Person : {p} ";
+            return $"Town: {_name}, City: {_city}, Postal Code: {_postalcode}";
         }
-
     }
 }
